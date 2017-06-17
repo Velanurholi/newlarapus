@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Session;
 
 
 class BooksController extends Controller
@@ -59,6 +60,28 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'title'=>'required|unique:books,title',
+            'author_id'=>'required|exists:authors,id',
+            'amount'=>'required|numeric',
+            'cover' =>'image|max:2048'
+            ]);
+
+        $book = Book::create($request->except('cover'));
+        if ($request->hasFile('cover')) {
+            $uploaded_cover = $request->file('cover');
+            $extension=$uploaded_cover->getClientOriginalExtension();
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath=public_path() . DIRECTORY_SEPARATOR . 'img';
+            $uploaded_cover -> move($destinationPath, $filename);
+            $book->cover=$filename;
+            $book->save();
+            Session::flash("flash_notification", [
+                "level"=>"success",
+                "message"=>"Berhasil menyimpan $book->title"
+                ]);
+                return redirect()->route('books.index'); 
+        }
     }
 
     /**
@@ -80,7 +103,8 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find( $id);
+        return view('books.edit')->with(compact('book'));
     }
 
     /**
