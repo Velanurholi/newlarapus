@@ -14,7 +14,7 @@
 					<h2 class="panel-title">Ubah Buku</h2>
 				</div>
 				<div class="panel-body">
-				{!! Form::model($book,['url'=>route('books.update', $book->id), 'method'=>'put','class'=>'form-horizontal']) !!}
+				{!! Form::model($book,['url'=>route('books.update', $book->id), 'method'=>'put', 'files'=>'true', class'=>'form-horizontal']) !!}
 				@include ('books._form')
 				{!! Form::close() !!}
 				</div>

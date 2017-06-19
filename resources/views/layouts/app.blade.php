@@ -18,6 +18,8 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/jquery.dataTables.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/selectize.css" rel="stylesheet">
+    <link href="/css/selectize.bootstrap3.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -51,12 +53,12 @@
                     <ul class="nav navbar-nav">
                         @if (Auth::check() )
                         <li><a href="{{url('/home') }}">Dashboard</a></li>
-                        <li><a href="{{route('authors.index') }}">Penulis</a></li>
-                       <li><a href="{{ route('books.index') }}">Buku</a></li>
+                       
+                       
 
                         @endif
                         @role('admin')
-                        <li><a href="{{ route('authors.index') }}">Penulis</a></li>
+                        <li><a href="{{route('authors.index') }}">Penulis</a></li>
                         <li><a href="{{ route('books.index') }}">Buku</a></li>
                         @endrole
                     </ul>
@@ -104,6 +106,8 @@
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
      <script src="/js/custom.js"></script>
+     <script src="/js/selectize.min.js"></script>
     @yield('scripts')
+    
 </body>
 </html>
