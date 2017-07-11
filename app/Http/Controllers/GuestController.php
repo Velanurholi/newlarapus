@@ -19,7 +19,6 @@ class GuestController extends Controller
             return Datatables::of($books)
             ->addColumn('action', function($book) {
             	if (Laratrust::hasRole('admin')) return'';
-            	
             	return '<a class="btn btn-xs btn-primary" href="'.route('guest.books.borrow', $book->id).'" >Pinjam</a>';
             })->make(true);
         }
@@ -30,4 +29,5 @@ class GuestController extends Controller
         ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'', 'orderable'=>false, 'searchable'=>false]);
         return view ('guest.index')->with(compact('html'));
     }
+
 }

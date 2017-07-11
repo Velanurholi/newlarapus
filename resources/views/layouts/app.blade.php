@@ -54,7 +54,6 @@
                         @if (Auth::check() )
                         <li><a href="{{url('/home') }}">Dashboard</a></li>
                        
-                       
 
                         @endif
                         @role('admin')
