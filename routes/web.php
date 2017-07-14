@@ -26,4 +26,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
 		'uses'=>'BooksController@borrow' ]); 
 
 });
-
+Route::put('books/{book}/return', [
+	'middleware'=>['auth', 'role:member'],
+	'as'=>'member.books.return',
+	'uses'=>'BooksController@returnBack' 
+	]);
