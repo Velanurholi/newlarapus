@@ -58,6 +58,10 @@
                         <li><a href="{{route('authors.index') }}">Penulis</a></li>
                         <li><a href="{{ route('books.index') }}">Buku</a></li>
                         @endrole
+                        @if (auth::check() )
+                        <li><a href="{{ url('/settings/profile') }}">Profil</a></li>
+                        @endif
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,6 +78,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                    <a href="{{url('/settings/password')}}"><i class="fa fa-btn fa-lock"></i>Ubah Password</a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -31,3 +31,10 @@ Route::put('books/{book}/return', [
 	'as'=>'member.books.return',
 	'uses'=>'BooksController@returnBack' 
 	]);
+Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');
+Route::get('auth/send-verification', 'Auth\RegisterController@sendVerification');
+Route::get('settings/profile', 'SettingsController@profile');
+Route::get('settings/profile/edit', 'SettingsController@editprofile');
+Route::get('settings/profile', 'SettingsController@updateProfile');
+Route::get('settings/password', 'SettingsController@editPassword');
+Route::get('settings/password', 'SettingsController@updatePassword');
