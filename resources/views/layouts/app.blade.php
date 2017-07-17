@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="css/font-awesome.min.css/" rel="stylesheet" type='text/css'>
+<link href="/css/font-awesome.min.css/" rel="stylesheet" type='text/css'>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel='sylesheet' type='text/css'>
 
@@ -57,8 +57,10 @@
                         @role('admin')
                         <li><a href="{{route('authors.index') }}">Penulis</a></li>
                         <li><a href="{{ route('books.index') }}">Buku</a></li>
+                        <li><a href="{{ route('members.index') }}">Member</a></li>
+                        <li><a href="{{ route('statistics.index') }}">Peminjaman</a></li>
                         @endrole
-                        @if (auth::check() )
+                        @if (auth()->check() )
                         <li><a href="{{ url('/settings/profile') }}">Profil</a></li>
                         @endif
                         
@@ -103,13 +105,13 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     @include ('layouts.menu')
-    <script src=".js/jquery-3.1.0.min.js"></script>
-    <script src=".js/bootstrap.min.js"></script>
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
      <script src="/js/custom.js"></script>
      <script src="/js/selectize.min.js"></script>
     @yield('scripts')
-    
+
 </body>
 </html>

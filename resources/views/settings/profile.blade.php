@@ -5,13 +5,12 @@
     <div class="row">
         <div class="col-md-12">
        <ul class="breadcrumb">
-           <li><a href="{{url('/home')}}">Dashboard</a></li>
+           <li><a href="{{ url('/home') }}">Dashboard</a></li>
            <li class="active">Profil</li>
        </ul>
        <div class="panel panel-default">
        <div class="panel-heading">
            <h2 class="panel-title">Profil</h2>
-       </div>
        </div>
            <div class="panel-body">
                <table class="table">
