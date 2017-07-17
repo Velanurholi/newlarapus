@@ -14,8 +14,8 @@ class StatisticsController extends Controller
     {
     	if ($request->ajax() ) {
     		$stats=BorrowLog::with('book', 'user');
-    		if ($request->get('status')== 'returned') $stats->returned();
-    		if ($request->get('status')== 'not-returned') $stats->borrowed();
+    		if ($request->get('status') == 'returned') $stats->returned();
+    		if ($request->get('status') == 'not-returned') $stats->borrowed();
     	
     		return Datatables::of($stats)
     		->addColumn('returned_at', function($stat) {
@@ -29,7 +29,7 @@ class StatisticsController extends Controller
     	->addColumn(['data'=>'book.title', 'name'=>'book.title', 'title'=>'Judul'])
     	->addColumn(['data'=>'user.name', 'name'=>'user.name', 'title'=>'Peminjam'])
     	->addColumn(['data'=>'created_at', 'name'=>'created_at', 'title'=>'Tanggal Pinjam', 'searchable'=>false])
-    	->addColumn(['data'=>'creturned_at', 'name'=>'returned_at', 'title'=>'Tanggal Kembali','orderable'=>false, 'searchable'=>false]);
+    	->addColumn(['data'=>'returned_at', 'name'=>'returned_at', 'title'=>'Tanggal Kembali','orderable'=>false, 'searchable'=>false]);
     	return view('statistics.index')->with(compact('html'));
     }
 }

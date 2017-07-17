@@ -10,7 +10,7 @@ use Yajra\Datatables\Facades\Datatables;
 use App\Http\Requests\StoreMemberRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
-use\App\Http\Requests\UpdateMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 
 class MembersController extends Controller
 {
@@ -21,7 +21,7 @@ class MembersController extends Controller
     		$members=Role::where('name','member')->first()->users;
     		return Datatables::of($members)
     		->addColumn('name', function($member) {
-    			return '<a href="'.route('members.show', $member->id).'">'.$member->name.'</a>';
+    			return '<a href="'.route('members.show', $member->id).'" >'.$member->name.'</a>';
     		})
     		->addColumn('action', function($member) {
     			return view('datatable._action', [
@@ -50,14 +50,14 @@ class MembersController extends Controller
     	$password=str_random(6);
     	$data=$request->all();
     	$data['password']=bcrypt($password);
-    	$data['is_verified']=1;
+    	$data['is_verified']= 1;
     	$member=User::create($data);
     	$memberRole=Role::where('name', 'member')->first();
     	$member->attachRole($memberRole);
     	Mail::send('auth.emails.invite', compact('member', 'password'), function($m) use ($member) {
     		$m->to($member->email, $member->name)->subject('Anda telah didaftarkan di Larapus');
     	});
-    	Session::flash('flash_notification', [
+    	Session::flash("flash_notification", [
     		"level"=>"success",
     		"message"=>"Berhasil menyimpan member dengan email".
     		"<strong>" .$data['email']. "</strong>".
@@ -79,7 +79,7 @@ class MembersController extends Controller
      public function edit($id)
     {
         $member = User::find( $id);
-        return view('members.edit')->with(compact('members'));
+        return view('members.edit')->with(compact('member'));
     }
 
     public function show($id)
@@ -96,7 +96,6 @@ class MembersController extends Controller
     		Session::flash("flash_notification", [
     		"level"=> "success",
     		"message"=>"Member berhasil dihapus"]);
-    	
     	}
     	return redirect()->route('members.index');
     }
